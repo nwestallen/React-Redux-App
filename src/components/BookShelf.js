@@ -1,0 +1,1 @@
+//Component displaying selection of shelved books with spines visible

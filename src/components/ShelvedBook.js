@@ -1,1 +1,0 @@
-//Book spine displayed on shelf that presents un-shelved book when clicked

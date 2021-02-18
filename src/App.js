@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Bookshelf from './components/BookShelf';
 import BookInfo from './components/BookInfo';

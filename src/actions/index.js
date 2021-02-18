@@ -8,9 +8,9 @@ export const REMOVE_BOOK = "REMOVE_BOOK";
 
 export const fetchBookLoad = () => {return({type: FETCH_BOOK_LOAD})};
 export const fetchBookSuccess = result => {return({type: FETCH_BOOK_SUCCESS, payload: result})};
-export const fetchBookFail = error => {return({type: FETCH_BOOK_FAIL, payload: error})};
+export const fetchBookFail = key => {return({type: FETCH_BOOK_FAIL, payload: key})};
 export const closeBookInfo = () => {return({type: CLOSE_BOOK_INFO})};
-export const removeBook = bookKey => {return({type: REMOVE_BOOK, payload: bookKey})};
+export const removeBook = () => {return({type: REMOVE_BOOK})};
 
 export const viewBook = key => dispatch => {
     dispatch(fetchBookLoad());
@@ -20,5 +20,5 @@ export const viewBook = key => dispatch => {
     .then(res => {
         dispatch(fetchBookSuccess(res.data[`OLID:${key}`]))
     })
-    .catch(err => dispatch(fetchBookFail(err)));
+    .catch(err => dispatch(fetchBookFail(key)));
 };

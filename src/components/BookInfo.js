@@ -11,7 +11,7 @@ const BookInfo = props => {
     };
 
     const handleRemove = e => {
-        props.removeBook(props.bookInfo.key);
+        props.removeBook();
     }
 
     if (props.loading) {
@@ -31,6 +31,7 @@ const BookInfo = props => {
                 <div className='bookinfo'>
                     <h1>Error</h1>
                     <p>Your book did not load. This is likely due to a bad key.</p>
+                    <button onClick={handleRemove}>Remove</button>
                 </div>
             </div>
         )

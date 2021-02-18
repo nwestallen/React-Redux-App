@@ -12,7 +12,6 @@ const initialState = {
     isLoading: false,
     showInfo: false,
     loadedBook: {title: '', subtitle:'', coverLink: '', key: ''},
-    error: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -39,7 +38,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 showInfo: true,
                 isLoading: false,
-                error: action.payload
+                loadedBook: {...state.loadedBook, key: action.payload}
             };
         case CLOSE_BOOK_INFO:
             return {
@@ -51,7 +50,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loadedBook: {title: '', subtitle: '', coverLink: '', key: ''},
-                books: state.books.filter(book => book.key !== action.payload),
+                books: state.books.filter(book => book.key !== state.loadedBook.key),
                 showInfo: false
             }
         default:

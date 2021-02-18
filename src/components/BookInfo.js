@@ -18,6 +18,15 @@ const BookInfo = props => {
     }
     else if (!props.show) {
         return null
+    } else if (!props.bookInfo.title) {
+        return(
+            <div onClick={handleClick} className='bookmodal'>
+                <div className='bookinfo'>
+                    <h1>Error</h1>
+                    <p>Your book did not load. This is likely due to a bad key.</p>
+                </div>
+            </div>
+        )
     } else {
     return(
         <div onClick={handleClick} className='bookmodal'>

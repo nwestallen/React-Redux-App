@@ -1,18 +1,19 @@
 //Component displaying selection of shelved books with spines visible
-import './../App.css';
 import { connect } from 'react-redux';
+import { viewBook } from './../actions';
 
 const Bookshelf = props => {
 
     const handleClick = e => {
-        console.log(e.target)
+        console.log(e.target.id);
+        props.viewBook(e.target.id);
     }
 
     const bookColors = ['blue', 'red', 'yellow', 'green'];
 
     return(
         <div className='bookshelf'>
-            {props.books.map((book, index) => <div onClick={handleClick} key={index} className={`bookspine ${bookColors[index % 4]}`}>{book.title}</div>)}
+            {props.books.map((book, index) => <div onClick={handleClick} key={book.key} id={book.key} className={`bookspine ${bookColors[index % 4]}`}>{book.title}</div>)}
         </div>
     )
 };
@@ -23,4 +24,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Bookshelf);
+export default connect(mapStateToProps, { viewBook })(Bookshelf);

@@ -1,23 +1,43 @@
-import { FETCH_BOOK_FAIL, FETCH_BOOK_LOAD, FETCH_BOOK_SUCCESS } from './../reducers';
+import { FETCH_BOOK_FAIL, FETCH_BOOK_LOAD, FETCH_BOOK_SUCCESS } from './../actions';
 
 const initialState = {
     books: [
         {title: 'Gödel, Escher, Bach', key: 'OL4731539M'}, 
         {title: 'Structure and Interpretation of Computer Programs', key: 'OL15495574M'},
         {title: 'The Lifebox, The Seashell, and The Soul', key: 'OL8615415M'},
-        {title: 'How to Solve It', key: 'OL7757839M'}
+        {title: 'How to Solve It', key: 'OL7757839M'},
+        {title: 'Fake Book', key: 'badkey'}
     ],
     isLoading: false,
     showInfo: false,
-    loadedBook: {title: '', author: '', coverLink: '', isbn: ''},
+    loadedBook: {title: '', subtitle:'', coverLink: ''},
     error: ''
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case FETCH_BOOK_LOAD:
+            return {
+                ...state,
+                isLoading: true
+            };
+        case FETCH_BOOK_SUCCESS:
+            return {
+                ...state,
+                loadedBook: {title: action.payload.title, subtitle: action.payload.subtitle, coverLink: action.payload.cover.medium },
+                isLoading: false,
+                showInfo: true
+            };
+        case FETCH_BOOK_FAIL:
+            return {
+                ...state,
+                showInfo: true,
+                isLoading: false,
+                error: action.payload
+            };
         default:
             return state;
-    }
-}
+    };
+};
 
 export default reducer;

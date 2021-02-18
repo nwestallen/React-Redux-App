@@ -12,7 +12,10 @@ export const viewBook = key => dispatch => {
     dispatch(fetchBookLoad());
 
     axios
-    .get(`http://openlibrary.org/api/volumes/brief/olid/${key}.json`)
-    .then(res => dispatch(fetchBookSuccess(res.data)))
+    .get(`https://openlibrary.org/api/books?bibkeys=OLID:${key}&jscmd=data&format=json`)
+    .then(res => {
+        console.log(res.data[`OLID:${key}`])
+        dispatch(fetchBookSuccess(res.data[`OLID:${key}`]))
+    })
     .catch(err => dispatch(fetchBookFail(err)));
 };

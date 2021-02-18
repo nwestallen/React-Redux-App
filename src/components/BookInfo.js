@@ -7,8 +7,16 @@ const BookInfo = props => {
     const handleClick = e => {
         props.closeBookInfo();
     };
-
-    if (!props.show) {
+    if (props.loading) {
+        return(
+            <div onClick={handleClick} className='bookmodal'>
+                <div className='bookinfo'>
+                 <h1>Loading...</h1>
+                </div>
+            </div>
+        )
+    }
+    else if (!props.show) {
         return null
     } else {
     return(
@@ -28,6 +36,8 @@ const BookInfo = props => {
 const mapStateToProps = state => {
     return {
         show: state.showInfo,
+        error: state.error,
+        loading: state.isLoading,
         bookInfo: state.loadedBook
     }
 }

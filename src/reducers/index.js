@@ -1,4 +1,4 @@
-import { CLOSE_BOOK_INFO, FETCH_BOOK_FAIL, FETCH_BOOK_LOAD, FETCH_BOOK_SUCCESS } from './../actions';
+import { CLOSE_BOOK_INFO, FETCH_BOOK_FAIL, FETCH_BOOK_LOAD, FETCH_BOOK_SUCCESS, REMOVE_BOOK } from './../actions';
 
 const initialState = {
     books: [
@@ -11,7 +11,7 @@ const initialState = {
     ],
     isLoading: false,
     showInfo: false,
-    loadedBook: {title: '', subtitle:'', coverLink: ''},
+    loadedBook: {title: '', subtitle:'', coverLink: '', key: ''},
     error: ''
 };
 
@@ -25,7 +25,12 @@ const reducer = (state = initialState, action) => {
         case FETCH_BOOK_SUCCESS:
             return {
                 ...state,
-                loadedBook: {title: action.payload.title, subtitle: action.payload.subtitle, coverLink: action.payload.cover.medium },
+                loadedBook: {
+                    title: action.payload.title, 
+                    subtitle: action.payload.subtitle, 
+                    coverLink: action.payload.cover.medium ,
+                    key: action.payload.identifiers.openlibrary[0]
+                },
                 isLoading: false,
                 showInfo: true
             };
@@ -40,8 +45,15 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 showInfo: false,
-                loadedBook: {title: '', subtitle: '', coverLink: ''}
+                loadedBook: {title: '', subtitle: '', coverLink: '', key: ''}
             };
+        case REMOVE_BOOK:
+            return {
+                ...state,
+                loadedBook: {title: '', subtitle: '', coverLink: '', key: ''},
+                books: state.books.filter(book => book.key !== action.payload),
+                showInfo: false
+            }
         default:
             return state;
     };

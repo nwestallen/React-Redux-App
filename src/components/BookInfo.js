@@ -1,6 +1,6 @@
 //Front cover of book with info/details?
 import { connect } from 'react-redux';
-import { closeBookInfo } from './../actions';
+import { closeBookInfo, removeBook } from './../actions';
 
 const BookInfo = props => {
 
@@ -9,6 +9,11 @@ const BookInfo = props => {
             props.closeBookInfo();
         }
     };
+
+    const handleRemove = e => {
+        props.removeBook(props.bookInfo.key);
+    }
+
     if (props.loading) {
         return(
             <div onClick={handleClick} className='bookmodal'>
@@ -37,6 +42,7 @@ const BookInfo = props => {
                 <h3>{props.bookInfo.title}</h3>
                 <p>{props.bookInfo.subtitle}</p>
                 <img alt={props.bookInfo.title} src={props.bookInfo.coverLink} />
+                <button onClick={handleRemove}>Remove</button>
             </div>
         </div>
         )
@@ -53,4 +59,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { closeBookInfo })(BookInfo);
+export default connect(mapStateToProps, { closeBookInfo, removeBook })(BookInfo);

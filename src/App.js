@@ -6,7 +6,9 @@ import BookInfo from './components/BookInfo';
 function App() {
   return (
     <div className="App">
-      <h1>Your Virtual Bookshelf</h1>
+      <div className='App-header'>
+        <h1>Your Virtual Bookshelf</h1>
+      </div>
       <BookInfo />
       <Bookshelf />
     </div>

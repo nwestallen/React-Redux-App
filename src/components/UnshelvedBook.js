@@ -1,1 +1,0 @@
-//Front cover of book with info/details?

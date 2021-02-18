@@ -1,3 +1,4 @@
+import { FETCH_BOOK_FAIL, FETCH_BOOK_LOAD, FETCH_BOOK_SUCCESS } from './../reducers';
 
 const initialState = {
     books: [
@@ -7,7 +8,8 @@ const initialState = {
         {title: 'How to Solve It', key: 'OL7757839M'}
     ],
     isLoading: false,
-    loadedBook: {},
+    showInfo: false,
+    loadedBook: {title: '', author: '', coverLink: '', isbn: ''},
     error: ''
 };
 

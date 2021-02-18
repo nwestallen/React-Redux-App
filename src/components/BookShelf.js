@@ -4,11 +4,15 @@ import { connect } from 'react-redux';
 
 const Bookshelf = props => {
 
+    const handleClick = e => {
+        console.log(e.target)
+    }
+
     const bookColors = ['blue', 'red', 'yellow', 'green'];
 
     return(
         <div className='bookshelf'>
-            {props.books.map((book, index) => <div className={`bookspine ${bookColors[index % 4]}`}>{book.title}</div>)}
+            {props.books.map((book, index) => <div onClick={handleClick} key={index} className={`bookspine ${bookColors[index % 4]}`}>{book.title}</div>)}
         </div>
     )
 };

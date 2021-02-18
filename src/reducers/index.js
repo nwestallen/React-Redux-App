@@ -1,4 +1,4 @@
-import { FETCH_BOOK_FAIL, FETCH_BOOK_LOAD, FETCH_BOOK_SUCCESS } from './../actions';
+import { CLOSE_BOOK_INFO, FETCH_BOOK_FAIL, FETCH_BOOK_LOAD, FETCH_BOOK_SUCCESS } from './../actions';
 
 const initialState = {
     books: [
@@ -34,6 +34,12 @@ const reducer = (state = initialState, action) => {
                 showInfo: true,
                 isLoading: false,
                 error: action.payload
+            };
+        case CLOSE_BOOK_INFO:
+            return {
+                ...state,
+                showInfo: false,
+                loadedBook: {title: '', subtitle: '', coverLink: ''}
             };
         default:
             return state;

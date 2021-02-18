@@ -6,10 +6,9 @@ import BookInfo from './components/BookInfo';
 function App() {
   return (
     <div className="App">
-      <h1>Book App Boi</h1>
+      <h1>Your Virtual Bookshelf</h1>
       <BookInfo />
       <Bookshelf />
-      
     </div>
   );
 }

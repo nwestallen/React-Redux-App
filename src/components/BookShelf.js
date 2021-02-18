@@ -5,7 +5,6 @@ import { viewBook } from './../actions';
 const Bookshelf = props => {
 
     const handleClick = e => {
-        console.log(e.target.id);
         props.viewBook(e.target.id);
     }
 

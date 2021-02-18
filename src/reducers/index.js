@@ -6,7 +6,8 @@ const initialState = {
         {title: 'Structure and Interpretation of Computer Programs', key: 'OL15495574M'},
         {title: 'The Lifebox, The Seashell, and The Soul', key: 'OL8615415M'},
         {title: 'How to Solve It', key: 'OL7757839M'},
-        {title: 'Fake Book', key: 'badkey'}
+        {title: 'Fake Book', key: 'badkey'},
+        {title: 'Eloquent Javascript', key: 'OL26832992M'}
     ],
     isLoading: false,
     showInfo: false,

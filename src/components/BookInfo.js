@@ -5,7 +5,9 @@ import { closeBookInfo } from './../actions';
 const BookInfo = props => {
 
     const handleClick = e => {
-        props.closeBookInfo();
+        if(e.target === e.currentTarget) {
+            props.closeBookInfo();
+        }
     };
     if (props.loading) {
         return(
@@ -32,7 +34,7 @@ const BookInfo = props => {
         <div onClick={handleClick} className='bookmodal'>
             <div className='bookinfo'>
                 <h2>Book Info</h2>
-                <p>{props.bookInfo.title}</p>
+                <h3>{props.bookInfo.title}</h3>
                 <p>{props.bookInfo.subtitle}</p>
                 <img alt={props.bookInfo.title} src={props.bookInfo.coverLink} />
             </div>
